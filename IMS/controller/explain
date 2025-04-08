@@ -1,0 +1,12 @@
+IdolGroupController는 사용자의 요청을 받아 적절한 액션(Action)을 실행하는 역할을 하고 있다.
+즉, 프론트 컨트롤러(Front Controller) 패턴의 기초를 잘 구현하고 있다고 볼 수 있습니다.
+
+Action 인터페이스:	실행할 동작(예: 목록 출력, 등록 등)을 정의한 인터페이스
+execute(Scanner scanner):	구체적인 기능 실행 시 필요한 사용자 입력을 받을 수 있도록 설계
+processRequest:	실제로 특정 액션을 실행시키는 메서드로, 컨트롤러의 중심 역할 수행
+
+* 흐름예시
+1. 메인에서 어떤 액션을 할지 결정
+2. 해당 액션 객체 생성 (예: new IdolGroupListAction())
+3. 컨트롤러에 넘김
+4. action.execute(scanner) 호출 → 실제 로직 수행
