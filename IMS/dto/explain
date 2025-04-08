@@ -1,0 +1,17 @@
+DTO란? 
+DTO는 데이터를 한 곳에서 다른 곳으로 전달할 때 사용하는 객체입니다.
+예를 들어 사용자가 입력한 데이터를 UI → Service → DB 등으로 전달할 때 DTO를 사용합니다.
+
+*toString() 메서드를 오버라이드하지 않을 경우?
+1. 객체의 내부 데이터가 아닌 메모리 정보를 문자열로 출력
+2  객체 내용이 사람이 읽기 쉽지 않게 표현된다.
+오버라이드 전:
+System.out.println(idolGroupDTO);
+출력 → dto.IdolGroupDTO@15db9742
+
+오버라이드 후:
+@Override
+public String toString() {
+    return "아이돌 그룹 이름: " + idolGroupName + ", 소속사: " + company;
+}
+출력 → 아이돌 그룹 이름: BTS, 소속사: HYBE
