@@ -1,0 +1,24 @@
+★Action을 여러 개 만들어두면, 사용자가 원하는 기능(등록, 삭제, 조회 등)에 따라 동적으로 실행
+-이 말은 사용자가 원하는 기능(로직)을 각각 분리해서 설계한 것 과 같은 의미다.
+이렇게 여러 Action 클래스를 만들면,
+기능마다 클래스를 분리해서 깔끔하게 관리할 수 있게 됩니다.
+
+
+★IdolGroupListAction 클래스는 사용자가 아이돌 그룹 목록을 보고 싶어할 때 호출되는 **목록 출력 기능** 담당하는 액션
+주요 흐름
+1. IdolGroupListService 생성 : 목록 데이터를 불러오는 서비스 객체
+2. getIdolGroupArray()호출 :	실제로 등록된 아이돌 그룹 배열 가져오기
+3. ConsoleUtil 사용 :	콘솔에 아이돌 그룹 정보를 예쁘게 출력하기
+
+역할 정리(MVC관점)
+IdolGroupListAction :	사용자 요청을 처리하는 컨트롤 계층
+IdolGroupListService :	데이터를 가져오는 서비스 계층
+ConsoleUtil :	데이터를 출력하는 뷰 계층
+IdolGroupDTO[] : 데이터를 담는 모델 계층
+
+★IdolGroupRegistAction 클래스는 아이돌 그룹을 새로 등록하는 기능을 담당하는 액션
+구성 요소별 역할
+ConsoleUtil.getNewIdolGroupDTO(scanner) :	사용자 입력 받아서 DTO 객체 생성
+IdolGroupRegistService.registIdolGroup(...) :	실제 등록 로직 처리 (중복 검사 등 포함)
+printRegistSuccessMessage(...) :	등록 성공 시 메시지 출력
+printRegistFailMessage(...)	: 등록 실패 시 메시지 출력
