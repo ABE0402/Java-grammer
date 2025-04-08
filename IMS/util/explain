@@ -1,0 +1,38 @@
+ConsoleUtil 클래스는 이름 그대로 콘솔 입출력을 담당하는 유틸리티 클래스
+MVC 구조에서 보면, 이 클래스는 View 역할을 담당한다.
+★즉 사용자에게 정보를 출력하고, 입력을 받아서 필요한 객체(IdolGroupDTO)를 만들어주는 도우미 클래스
+
+메서드별 설명
+1. public IdolGroupDTO getNewIdolGroupDTO(Scanner scanner)
+콘솔로부터 아이돌 그룹 정보를 입력받아 IdolGroupDTO 객체로 만들어주는 메서드
+사용자에게 차례로: 1.그룹 이름 2.소속사 3.성별 4.장르 5.데뷔년도 6.대표곡
+을 입력받아서 DTO에 저장 후 반환합니다. (IdolGroupDTO newIdolGroupDTO = new IdolGroupDTO();
+// setter를 통해 각 필드에 값 할당
+return newIdolGroupDTO; )
+
+2. printRegistSuccessMessage(String idolGroupName) 
+System.out.println(idolGroupName + "아이돌 그룹 등록 성공");
+등록 성공 시 사용자에게 긍정적인 피드백을 줍니다.
+
+3. printRegistFailMessage(String idolGroupName)
+System.out.println(idolGroupName + "아이돌 그룹 등록 실패");
+이미 존재하는 그룹명일 경우 중복체크에 의해 실패 → 사용자에게 실패 안내 출력
+
+4. printIdolGroupList(IdolGroupDTO[] idolGroupArray)
+if(idolGroupArray.length == 0) {
+	System.out.println("아직 등록된 아이돌 그룹이 없습니다.");
+} else {
+	for (...) {
+		System.out.println(idolGroupArray[i]);
+	}
+}
+배열이 비었을 때: 안내 메시지 출력
+데이터가 있을 때: IdolGroupDTO 객체들을 하나씩 출력
+이때 각 DTO가 toString() 메서드를 오버라이드했기 때문에 객체 이름만 출력해도 포맷팅된 정보가 나오는 구조
+
+전체 구조에서 역할은?
+
+ConsoleUtil	: 사용자 입력 및 출력 (View)
+Action : 계열	요청 처리 (Controller)
+Service : 계열	비즈니스 로직 (중복 체크, 저장 등)
+DTO	: 데이터를 담는 그릇 (Model)
